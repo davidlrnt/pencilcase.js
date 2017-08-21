@@ -1,3 +1,6 @@
 import Text from './text.js';
 import Line from './line.js';
-export { Text, Line };
+import Svg from './Svg.js';
+import Canvas from './Canvas.js';
+
+export { Text, Line, Svg, Canvas };
