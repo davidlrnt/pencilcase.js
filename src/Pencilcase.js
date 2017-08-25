@@ -63,23 +63,37 @@ export default class Pencilcase {
 		this.textEl = null;
 		// this.createLine(x1, y1, x2, y2, color, w)
 		let textInput = document.getElementById('pcase-textblinker');
-
+		let foreign
 	    if(!textInput) {
-	    	console.log("");
-	    	textInput = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-	    	textInput.setAttribute('stroke', 'black');
-    		textInput.setAttribute('stroke-width', 1);
+			foreign = document.createElementNS('http://www.w3.org/2000/svg', "foreignObject");
+	     	foreign.setAttribute('id', 'pcase-textblinker');
 
-	    	textInput.setAttribute("id", "pcase-textblinker");
+	    	const textInput = document.createElement('textarea');
+
+	    	foreign.appendChild(textInput)
+
+	    	foreign.setAttribute('x', cursorpt.x);
+	    	foreign.setAttribute('y', cursorpt.y);
 	    }
 
-	    textInput.setAttribute('x1', cursorpt.x);
-	    textInput.setAttribute('y1', cursorpt.y-10);
-	    textInput.setAttribute('x2', cursorpt.x);
-	    textInput.setAttribute('y2', cursorpt.y+10);
+	   	this.svg.appendChild(foreign);
 
-	    this.svg.appendChild(textInput);
-		textInput.classList.add('blink')
+
+	 //    if(!textInput) {
+	 //    	console.log("");
+	 //    	textInput.setAttribute('stroke', 'black');
+  //   		textInput.setAttribute('stroke-width', 1);
+
+	 //    	textInput.setAttribute("id", "pcase-textblinker");
+	 //    }
+
+	 //    textInput.setAttribute('x1', cursorpt.x);
+	 //    textInput.setAttribute('y1', cursorpt.y-10);
+	 //    textInput.setAttribute('x2', cursorpt.x);
+	 //    textInput.setAttribute('y2', cursorpt.y+10);
+
+	    // this.svg.appendChild(textInput);
+		// textInput.classList.add('blink')
 	}
 
   }
@@ -88,38 +102,38 @@ export default class Pencilcase {
   toolMouseUp(){
   }
   toolKeyPress(evt){
-		this.state.text += evt.key
+		// this.state.text += evt.key
 
-		this.textEl = this.textEl || document.createElementNS('http://www.w3.org/2000/svg', 'text');
-		this.textEl.setAttribute('x', this.state.x);
-		this.textEl.setAttribute('y', this.state.y);
-		this.textEl.setAttribute('fill', '#000');
-		this.textEl.textContent = this.state.text;
-	  	this.svg.appendChild(this.textEl);
+		// this.textEl = this.textEl || document.createElementNS('http://www.w3.org/2000/svg', 'text');
+		// this.textEl.setAttribute('x', this.state.x);
+		// this.textEl.setAttribute('y', this.state.y);
+		// this.textEl.setAttribute('fill', '#000');
+		// this.textEl.textContent = this.state.text;
+	 //  	this.svg.appendChild(this.textEl);
   }
   toolKeyDown(evt){
-	console.log(evt.keyCode);
-  	switch (evt.keyCode) {
-	  case 8:
-		this.state.text = this.state.text.slice(0,-1)
-	    break;
-	  case 13: 
-	  	const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-	  	this.textEl.appendChild(tspan);
-	  	// tspan.setAttribute('dy', "-0.5cm");
-	  	// this.textEl =  tspan;
-	  	// this.state.text = 
-		break;
-	  default:
-	    console.log('default');
-	}
+	// console.log(evt.keyCode);
+ //  	switch (evt.keyCode) {
+	//   case 8:
+	// 	this.state.text = this.state.text.slice(0,-1)
+	//     break;
+	//   case 13: 
+	//   	const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+	//   	this.textEl.appendChild(tspan);
+	//   	// tspan.setAttribute('dy', "-0.5cm");
+	//   	// this.textEl =  tspan;
+	//   	// this.state.text = 
+	// 	break;
+	//   default:
+	//     console.log('default');
+	// }
 
-	this.textEl = this.textEl || document.createElementNS('http://www.w3.org/2000/svg', 'text');
-	this.textEl.setAttribute('x', this.state.x);
-	this.textEl.setAttribute('y', this.state.y);
-	this.textEl.setAttribute('fill', '#000');
-	this.textEl.textContent = this.state.text;
-  	this.svg.appendChild(this.textEl);
+	// this.textEl = this.textEl || document.createElementNS('http://www.w3.org/2000/svg', 'text');
+	// this.textEl.setAttribute('x', this.state.x);
+	// this.textEl.setAttribute('y', this.state.y);
+	// this.textEl.setAttribute('fill', '#000');
+	// this.textEl.textContent = this.state.text;
+ //  	this.svg.appendChild(this.textEl);
   }
   showTools(){
 
